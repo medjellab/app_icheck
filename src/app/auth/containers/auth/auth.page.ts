@@ -13,12 +13,20 @@ import * as fromStore from '../../store';
 })
 export class AuthPage implements OnInit {
 
+  users$: Observable<User[]>;
+
   constructor(private store: Store<fromStore.UsersState>) { }
 
   ngOnInit() {
-    this.store.select<any>('users').subscribe(state => {
+    /*this.store.select<any>('users').subscribe(state => {
       console.log(state);
-    });
+    });*/
+
+    /*this.store.select(fromStore.getAllUsers).subscribe(state => {
+      console.log(state);
+    });*/
+
+    this.users$ = this.store.select(fromStore.getAllUsers);
   }
 
 }

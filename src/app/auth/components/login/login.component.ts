@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Icons } from '../../../shared/icons';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormErrorStateMatcher } from 'src/app/core/handlers/form-error-state-matcher';
@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
   // encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
+  @Input() user;
 
   loginForm: FormGroup;
   matcher = new FormErrorStateMatcher();
-  
+  message = '';
+
   img_Holcim = Icons.img_Holcim;
   iCheckLogo = Icons.iCheckLogo;
   userIcon = Icons.userIcon;
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
       username: [null, [Validators.required]],
       password: [null, [Validators.required]]
     });
+    console.log('Input: ', this.user);
   }
 
   onLogin() {

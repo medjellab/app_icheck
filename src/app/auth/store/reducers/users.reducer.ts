@@ -45,3 +45,8 @@ export function reducer(
 
     return state;
 }
+
+export const getUsersLoading = (state: UserState) => state.loading;
+export const getUsersLoaded = (state: UserState) => state.loaded;
+export const getUsers = (state: UserState) => state.data;
+

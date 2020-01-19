@@ -10,11 +10,12 @@ import { MaterialModule } from '../core/material/material.module';
 
 import * as fromComponents from './components';
 import * as fromContainers from './containers';
-// import * as fromServices from './services';
+import * as fromServices from './services';
 
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
-import { reducers } from './store';
+import { reducers, effects } from './store';
 
 @NgModule({
   imports: [
@@ -24,8 +25,11 @@ import { reducers } from './store';
     ReactiveFormsModule,
     IonicModule,
     AuthPageRoutingModule,
-    StoreModule.forFeature('users', reducers)
+    StoreModule.forFeature('users', reducers),
+    EffectsModule.forFeature(effects)
   ],
-  declarations: [fromContainers.AuthPage, fromComponents.LoginComponent]
+  providers: [...fromServices.services],
+  declarations: [...fromContainers.containers, ...fromComponents.components],
+  exports: [...fromContainers.containers, ...fromComponents.components]
 })
 export class AuthPageModule {}
